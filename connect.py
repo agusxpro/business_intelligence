@@ -1,12 +1,9 @@
 import mysql.connector as mysql
 from mysql.connector import Error
 import sqlalchemy
-from urllib.parse import quote_plus as urlquote
-import matplotlib.pyplot as plt
-import pandas as pd
-import os
 
-class StudiKasusS2:
+class AutoCreate:
+
     def _init_(self, host, port, user, password):
         self.host = host
         self.port = port
@@ -28,8 +25,6 @@ class StudiKasusS2:
             print("Error while connecting to MySQL", e)
         # preparing a cursor object
         # creating database
-
-
 
     def create_table(self, db_name, table_name, df):
         conn = mysql.connect(
@@ -69,8 +64,16 @@ class StudiKasusS2:
         except Error as e:
             print("Error while connecting to MySQL", e)
 
-
-
-    def import_csv(self, path):
-
+    def ambil_csv(self, path):
         return pd.read_csv(path, index_col=False, delimiter=',')
+
+    print("This Function has been established!")
+
+test = AutoCreate()
+test.host = "localhost"
+test.port = "3306"
+test.user = "root"
+test.password="MyNewPass"
+
+#test.create_db("AutoCreate_db1")
+test.create_table("AutoCreate_db1", "tbl_address", "df")
